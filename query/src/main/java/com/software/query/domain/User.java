@@ -1,4 +1,4 @@
-package com.software.login.domain;
+package com.software.query.domain;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -17,6 +17,7 @@ public class User implements Serializable {
     @NotBlank(message = "号码必填")
     @Length(max = 11,min = 11,message = "手机号码长度为11")
     private String number;
+    @NotBlank(message = "用户名必填")
     @Column(nullable = false, length = 20)
     private String username;
     @Column(nullable = false)

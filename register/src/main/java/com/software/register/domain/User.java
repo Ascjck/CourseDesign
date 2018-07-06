@@ -7,10 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
     @Id
     @Column(length = 11,nullable = false)
     @NotBlank(message = "号码必填")

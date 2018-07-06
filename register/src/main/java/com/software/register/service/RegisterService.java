@@ -1,6 +1,8 @@
 package com.software.register.service;
 
 import com.software.register.domain.User;
+import com.software.register.domain.UserInfo;
+import com.software.register.repository.UserInfoJpaRepository;
 import com.software.register.repository.UserJpaRepository;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import java.util.List;
 public class RegisterService {
     @Autowired
     private UserJpaRepository userJpaRepository;
+    @Autowired
+    private UserInfoJpaRepository userInfoJpaRepository;
 
     public List<User> findAll(){
         return userJpaRepository.findAll();
@@ -33,7 +37,13 @@ public class RegisterService {
         user.setUsername(username);
         if (userJpaRepository.findByNumber(number) != null)
             return null;
-        return userJpaRepository.save(user);
+        User res =  userJpaRepository.save(user);
+        UserInfo info = new UserInfo();
+        info.setBalance(0.0);
+        info.setPack("a");
+        info.setUser(res);
+        userInfoJpaRepository.save(info);
+        return res;
     }
 
 }
