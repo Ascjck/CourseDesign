@@ -24,7 +24,6 @@ public class LoginController {
 
         if (loginService.login(user.getNumber(),user.getPasswd())) {
             request.getSession().setAttribute("validUser", user.getNumber());
-            System.out.println(request.getSession().getAttribute("validUser"));
             return new Result<>(0, "ok", true);
         }
         else

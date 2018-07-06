@@ -40,7 +40,7 @@ public class RegisterService {
         User res =  userJpaRepository.save(user);
         UserInfo info = new UserInfo();
         info.setBalance(0.0);
-        info.setPack("a");
+        info.setPack("A");
         info.setUser(res);
         userInfoJpaRepository.save(info);
         return res;
