@@ -5,6 +5,7 @@ import com.software.ribbon.domain.User;
 import com.software.ribbon.domain.UserInfo;
 import com.software.ribbon.service.RibbonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,13 +23,13 @@ public class RibbonController {
     }
 
     @PostMapping("/login")
-    public Result<Boolean> login(HttpServletRequest request){
+    public ResponseEntity login(HttpServletRequest request){
         return ribbonService.loginService(request);
     }
 
     @GetMapping("/query")
     public Result<UserInfo> query(HttpServletRequest request){
-        return ribbonService.queryService();
+        return ribbonService.queryService(request);
     }
 
     @PostMapping("/recharge")
@@ -43,6 +44,6 @@ public class RibbonController {
 
     @GetMapping("/logout")
     public Result<Boolean> logout(HttpServletRequest request){
-        return ribbonService.logoutService();
+        return ribbonService.logoutService(request);
     }
 }
